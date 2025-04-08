@@ -1,0 +1,8 @@
+streamlit
+pandas
+xgboost
+folium
+streamlit-folium
+requests
+peopledatalabs
+pytz
