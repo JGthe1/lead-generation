@@ -870,8 +870,10 @@ exclude_cols = [
     "has_email", 
     "has_decision_maker_name", 
     "normalized_rating", 
-    "normalized_reviews"
-    "size_priority"
+    "size_priority",
+    "normalized_reviews",
+    "lead_probability"
+    
 ]
 
 def download_filtered_csv():
