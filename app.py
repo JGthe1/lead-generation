@@ -859,6 +859,42 @@ def main():
             display_leads_table(df)  # Show leads in table format
             display_leads_map(df)  # Show leads on map
 
+
+
+######## DOWNLOAD ENTIRE DATABASE FROM APP
+
+# Columns to exclude
+exclude_cols = [
+    "has_decision_maker_phone", 
+    "has_email", 
+    "has_decision_maker_name", 
+    "normalized_rating", 
+    "normalized_reviews"
+]
+
+def download_filtered_csv():
+    # Connect to SQLite
+    conn = sqlite3.connect(DATABASE_FILE)
+    df = pd.read_sql("SELECT * FROM business_leads", conn)
+    conn.close()
+
+    # Drop sensitive columns
+    df = df.drop(columns=exclude_cols, errors='ignore')
+
+    # Convert to CSV and offer download
+    csv = df.to_csv(index=False)
+    st.download_button(
+        label=" Download Entire Database (CSV)",
+        data=csv,
+        file_name="entire_database.csv",
+        mime="text/csv"
+    )
+
+st.markdown("Download Entire Database CSV")
+download_filtered_csv()
+
+
+
 #  Run Streamlit App
 if __name__ == "__main__":
     main()
