@@ -863,9 +863,6 @@ def main():
 
 ######## DOWNLOAD ENTIRE DATABASE FROM APP
 
-st.markdown("Download Entire Database CSV")
-download_filtered_csv()
-
 
 # Columns to exclude
 exclude_cols = [
@@ -882,10 +879,10 @@ def download_filtered_csv():
     df = pd.read_sql("SELECT * FROM business_leads", conn)
     conn.close()
 
-    # Drop sensitive columns
+    # Drop columns
     df = df.drop(columns=exclude_cols, errors='ignore')
 
-    # Convert to CSV and offer download
+    # Convert to CSV and download
     csv = df.to_csv(index=False)
     st.download_button(
         label=" Download Entire Database (CSV)",
@@ -894,6 +891,9 @@ def download_filtered_csv():
         mime="text/csv"
     )
 
+
+st.markdown("Download Entire Database CSV")
+download_filtered_csv()
 
 
 #  Run Streamlit App
