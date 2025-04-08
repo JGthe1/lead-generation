@@ -863,6 +863,10 @@ def main():
 
 ######## DOWNLOAD ENTIRE DATABASE FROM APP
 
+st.markdown("Download Entire Database CSV")
+download_filtered_csv()
+
+
 # Columns to exclude
 exclude_cols = [
     "has_decision_maker_phone", 
@@ -889,9 +893,6 @@ def download_filtered_csv():
         file_name="entire_database.csv",
         mime="text/csv"
     )
-
-st.markdown("Download Entire Database CSV")
-download_filtered_csv()
 
 
 
